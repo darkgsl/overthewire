@@ -64,3 +64,8 @@ strings data.txt | grep "==*"
 
 FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
   
+#### Stage10
+ssh -v -p 2220 bandit10@bandit.labs.overthewire.org
+echo $(base64 data.txt)
+
+VkdobElIQmhjM04zYjNKa0lHbHpJR1IwVWpFM00yWmFTMkl3VWxKelJFWlRSM05uTWxKWGJuQk9W
