@@ -1,3 +1,4 @@
+https://overthewire.org/wargame
 #### Stage0
  ssh -v -p 2220 bandit0@bandit.labs.overthewire.org
 ls 
@@ -62,5 +63,4 @@ strings data.txt | grep "==*"
  strings data.txt | grep "=\+"   (один или бболее раз)
 
 FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
-  
   
