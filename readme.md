@@ -66,6 +66,69 @@ FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
   
 #### Stage10
 ssh -v -p 2220 bandit10@bandit.labs.overthewire.org
-echo $(base64 data.txt)
+base64 --decode data.txt
 
-VkdobElIQmhjM04zYjNKa0lHbHpJR1IwVWpFM00yWmFTMkl3VWxKelJFWlRSM05uTWxKWGJuQk9W
+The password is dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+#### Stage11
+ssh -v -p 2220 bandit11@bandit.labs.overthewire.org
+
+all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+шифра ROT13 (Rotate by 13 positions)
+tr 'A-Za-z' 'N-ZA-Mn-za-m' выполняет ROT13 преобразование с помощью утилиты tr (translate).
+The password is 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+
+#### Stage12
+ssh -v -p 2220 bandit12@bandit.labs.overthewire.org
+mktemp -d
+
+temp_dir=$(mktemp -d)
+echo $temp_dir
+
+xxd data.txt | head -5
+xxd - просмотр hex-представления
+JPEG:     FF D8 FF E0
+PNG:      89 50 4E 47
+GIF:      47 49 46 38
+PDF:      25 50 44 46
+ZIP:      50 4B 03 04
+GZIP:     1F 8B 08
+
+есть hexdump, есть binary, ascii. и т.д.
+преобразовываем hex to bim
+xxd -r data.txt > compressed_file
+file compressed_file
+переименуем compressed_file в compressed_file.gz и gunzip
+и т.д. целая цкпочка
+
+The password is FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+
+#### Stage13
+ssh -v -p 2220 bandit13@bandit.labs.overthewire.org
+copy private key
+ scp -P 2220 bandit13@bandit.labs.overthewire.org:~/sshkey.private .
+
+ #### Stage14
+ssh -v -p 2220 -i $temp_dir/sshkey.private bandit14@bandit.labs.overthewire.org
+узнаем пароль текущего левела
+cat /etc/bandit_pass/bandit14
+MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+
+
+telnet localhost 30000
+
+8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+ #### Stage15
+ ssh -v -p 2220 bandit15@bandit.labs.overthewire.org
+ 
+ Команда ncat --ssl localhost 30001 устанавливает SSL/TLS соединение с сервером на том же компьютере на порту 30001.
+
+ ncat --ssl localhost 30001
+8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+Correct!
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+
+nmap
+socat
+nc
+nmap -sn 192.168.1.0/24
