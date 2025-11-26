@@ -131,4 +131,38 @@ kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
 nmap
 socat
 nc
+просканировать сеть
 nmap -sn 192.168.1.0/24
+
+
+ #### Stage16 
+ ssh -v -p 2220 bandit15@bandit.labs.overthewire.org
+
+ ss -tulpn | grep -E "\b31[0-9]{3}\b"
+ ncat --ssl localhost 31790
+private.key
+
+ #### Stage17
+ssh -v -i $(pwd)/private.key -p 2220  bandit17@bandit.labs.overthewire.org
+diff passwords.new passwords.old
+
+42c42
+< pGozC8kOHLkBMOaL0ICPvLV1IjQ5F1VA
+---
+> x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+
+ #### Stage18
+  ssh -v -p 2220 bandit18@bandit.labs.overthewire.org
+
+
+modified .bashrc to log you out when you log in with SSH.
+  ssh -v -p 2220 bandit18@bandit.labs.overthewire.org env -i bash --norc
+  cat readme
+  cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+  #### Stage19
+  ssh -v -p 2220 bandit19@bandit.labs.overthewire.org
+
+./bandit20-do cat /etc/bandit_pass/bandit20
+0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+#### Stage20
+  ssh -v -p 2220 bandit20@bandit.labs.overthewire.org
