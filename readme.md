@@ -166,3 +166,70 @@ modified .bashrc to log you out when you log in with SSH.
 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
 #### Stage20
   ssh -v -p 2220 bandit20@bandit.labs.overthewire.org
+запускаем свой севрер и переводим в фон
+echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -l -p 1234 &. 
+ ./suconnect 1234
+
+ EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+ #### Stage21
+  ssh -v -p 2220 bandit21@bandit.labs.overthewire.org
+смотрим крон
+ls /etc/cron.d
+cat /etc/cron.d/cronjob_bandit22
+
+cat /usr/bin/cronjob_bandit22.sh
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+ls -la
+cat
+  /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+
+ #### Stage22
+  ssh -v -p 2220 bandit22@bandit.labs.overthewire.org
+ls /etc/cron.d
+cat /etc/cron.d/cronjob_bandit23
+cat /usr/bin/cronjob_bandit23.sh
+*/
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+cat /etc/bandit_pass/$myname > /tmp/$mytarget
+*/
+md5sum - это утилита для вычисления MD5 хеша файлов или строк.
+
+/usr/bin/cronjob_bandit23.sh
+
+tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+
+Здесь ловушка
+скрипт выполняется для пользователя bandit23 ,
+и когда я выполняю от пользователя bandit22 естественно другой результат (другая диреткория)
+решение.
+вручную формируем имя диерктории и смотрим там парооьь
+echo I am user bandit23 | md5sum
+8ca319486bfbbc3663ea0fbe81326349
+
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+
+
+Hint
+запускае. скпирт,  и скрипт выполняется так: При запуске скрипта создается дочерний процесс
+Все переменные устанавливаются в этом дочернем процессе
+После завершения скрипта дочерний процесс уничтожается вместе со всеми переменными
+*Переменные существуют только внутри скрипта*
+
+Чтоббы получить доступ, запускам чз
+source, или просто . (Запустить скрипт в текущей shell (source)
+source /usr/bin/cronjob_bandit23.sh)
+
+ #### Stage23
+  ssh -v -p 2220 bandit23@bandit.labs.overthewire.org
